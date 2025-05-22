@@ -19,14 +19,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install feedgen feedparser requests
+          python3 -m pip install --upgrade pip
+          python3 -m pip install feedgen feedparser requests
 
       - name: Generate RSS feed
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ORG: yoohoo-plugins
-        run: python scripts/generate_feed.py
+        run: python3 scripts/generate_feed.py
 
       - name: Commit & push feed
         run: |

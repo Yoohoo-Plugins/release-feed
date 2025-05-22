@@ -42,14 +42,20 @@ for repo in repos:
     if not parsed.entries:
         continue
     entry = parsed.entries[0]
-    # Parse published date into datetime
-    published_parsed = entry.published_parsed
-    published_dt = datetime(*published_parsed[:6])
+    # Determine parsed date (published or updated)
+    dt_struct = entry.get('published_parsed') or entry.get('updated_parsed')
+    if not dt_struct:
+        # Skip if no date info
+        continue
+    published_dt = datetime(*dt_struct[:6])
+    # Use entry.published or entry.updated for human-readable date
+    published_str = getattr(entry, 'published', getattr(entry, 'updated', None))
     items.append({
         'title': entry.title,
         'link': entry.link,
         'id': entry.id,
         'published': published_dt,
+        'published_str': published_str,
         'summary': entry.summary
     })
 
@@ -62,7 +68,7 @@ for it in items:
     fe.id(it['id'])
     fe.title(it['title'])
     fe.link(href=it['link'])
-    fe.published(it['published'].isoformat())
+    fe.published(it['published_str'])
     fe.summary(it['summary'] or '—')
 
 # 5. Write RSS file
