@@ -59,8 +59,8 @@ for repo in repos:
         'summary': entry.summary
     })
 
-# 3. Sort items by published date descending
-items.sort(key=lambda x: x['published'], reverse=True)
+# 3. Sort items by published date ascending (oldest first)
+items.sort(key=lambda x: x['published'])
 
 # 4. Populate feed entries
 for it in items:
