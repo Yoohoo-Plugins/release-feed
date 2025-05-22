@@ -25,7 +25,7 @@ jobs:
       - name: Generate RSS feed
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORG: strangerstudios
+          ORG: yoohoo-plugins
         run: python scripts/generate_feed.py
 
       - name: Commit & push feed
