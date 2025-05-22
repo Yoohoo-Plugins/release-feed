@@ -1,63 +1,69 @@
 #!/usr/bin/env python3
-import os, requests
+import os
+import requests
+import feedparser
 from feedgen.feed import FeedGenerator
+from datetime import datetime
 
-ORG = os.getenv('ORG')
-TOKEN = os.getenv('GITHUB_TOKEN')
-HEADERS = {'Authorization': f'token {TOKEN}'}
+# Load configuration
+token = os.getenv('GITHUB_TOKEN')
+org = os.getenv('ORG', 'strangerstudios')
+headers = {'Authorization': f'token {token}'}
 
 # Initialize feed
-fg = FeedGenerator()
-fg.id(f'https://github.com/{ORG}')
-fg.title(f'{ORG} Releases')
-fg.link(href=f'https://{ORG}.github.io', rel='alternate')
-fg.link(href='releases.xml', rel='self')
-fg.description(f'All releases across the {ORG} organization')
+g = FeedGenerator()
+g.id(f'https://github.com/{org}')
+g.title(f'{org} Releases - Latest per Repo')
+g.link(href=f'https://{org}.github.io', rel='alternate')
+g.link(href='releases.xml', rel='self')
+g.description(f'Latest release from each repo in the {org} organization')
 
-# 1. List all repos
+# 1. List all public repos via GitHub API
 repos = []
 page = 1
 while True:
-    resp = requests.get(f'https://api.github.com/orgs/{ORG}/repos',
-                        params={'per_page': 100, 'page': page},
-                        headers=HEADERS)
-    data = resp.json()
+    r = requests.get(
+        f'https://api.github.com/orgs/{org}/repos',
+        headers=headers,
+        params={'per_page': 100, 'page': page}
+    )
+    data = r.json()
     if not data:
         break
     repos.extend(data)
     page += 1
 
-# 2. For each repo, fetch its releases
+# 2. Fetch only the latest release per repo via Atom feed
 items = []
 for repo in repos:
     name = repo['name']
-    releases = requests.get(
-        f'https://api.github.com/repos/{ORG}/{name}/releases',
-        headers=HEADERS
-    ).json()
-    for rel in releases:
-        # skip drafts
-        if rel.get('draft'):
-            continue
-        items.append({
-            'title': f"{name}: {rel['name'] or rel['tag_name']}",
-            'link': rel['html_url'],
-            'id': rel['url'],
-            'published': rel['published_at'],
-            'summary': rel.get('body', '').strip()
-        })
+    feed_url = f'https://github.com/{org}/{name}/releases.atom'
+    parsed = feedparser.parse(feed_url)
+    if not parsed.entries:
+        continue
+    entry = parsed.entries[0]
+    # Parse published date into datetime
+    published_parsed = entry.published_parsed
+    published_dt = datetime(*published_parsed[:6])
+    items.append({
+        'title': entry.title,
+        'link': entry.link,
+        'id': entry.id,
+        'published': published_dt,
+        'summary': entry.summary
+    })
 
-# 3. Sort by published date descending, limit last 50
-items = sorted(items, key=lambda x: x['published'], reverse=True)[:50]
+# 3. Sort items by published date descending
+items.sort(key=lambda x: x['published'], reverse=True)
 
-# 4. Add items to feed
+# 4. Populate feed entries
 for it in items:
-    fe = fg.add_entry()
+    fe = g.add_entry()
     fe.id(it['id'])
     fe.title(it['title'])
     fe.link(href=it['link'])
-    fe.published(it['published'])
+    fe.published(it['published'].isoformat())
     fe.summary(it['summary'] or '—')
 
-# 5. Write out
-fg.rss_file('releases.xml')
+# 5. Write RSS file
+g.rss_file('releases.xml')
