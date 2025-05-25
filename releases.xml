@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yoohoo-plugins Releases - Latest per Repo</title><link>releases.xml</link><description>Latest release from each repo in the yoohoo-plugins organization</description><atom:link href="releases.xml" rel="self"/><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><lastBuildDate>Sun, 25 May 2025 04:25:43 +0000</lastBuildDate><item><title>1.3 - 2025-01-23</title><link>https://github.com/Yoohoo-Plugins/yh-name-your-price/releases/tag/1.3</link><description>&lt;ul&gt;
+&lt;li&gt;ENHANCEMENT: Added support for for HPOS and Product Builder.&lt;/li&gt;
+&lt;li&gt;BUG FIX: Fixed a fatal error when trying to activate the license key.&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">tag:github.com,2008:Repository/430824341/1.3</guid><pubDate>Thu, 23 Jan 2025 19:13:32 +0000</pubDate></item><item><title>1.23 - 2024-11-06</title><link>https://github.com/Yoohoo-Plugins/pmpro-pdf-invoices/releases/tag/1.23</link><description>&lt;ul&gt;
+&lt;li&gt;ENHANCEMENT: Added more template variables, see documentation - &lt;a href="https://yoohooplugins.com/documentation/getting-started-with-paid-memberships-pro-pdf-invoices/" rel="nofollow"&gt;https://yoohooplugins.com/documentation/getting-started-with-paid-memberships-pro-pdf-invoices/&lt;/a&gt; (Thanks &lt;a class="user-mention notranslate" href="https://github.com/GCalToolkit"&gt;@GCalToolkit&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;ENHANCEMENT: Added better compatibility for Paid Memberships Pro 3.0+&lt;/li&gt;
+&lt;li&gt;BUG FIX: Fixed warning where $content was undefined in cases. (Thanks &lt;a class="user-mention notranslate" href="https://github.com/toby-pondr"&gt;@toby-pondr&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;BUG FIX: Fixed warnings for PHP 8.0+ (Thanks &lt;a class="user-mention notranslate" href="https://github.com/mircobabini"&gt;@mircobabini&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;SECURITY: Improved security on escaping output within the shortcode output.&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">tag:github.com,2008:Repository/180740223/1.23</guid><pubDate>Wed, 06 Nov 2024 19:06:48 +0000</pubDate></item><item><title>V2.4 - 2023-03-09</title><link>https://github.com/Yoohoo-Plugins/wp-zapier/releases/tag/v2.4</link><description>&lt;ul&gt;
+&lt;li&gt;ENHANCEMENT: Added support for MailPoet (Outbound Events)&lt;/li&gt;
+&lt;li&gt;ENHANCEMENT: Removed user's password from Outbound Events.&lt;/li&gt;
+&lt;li&gt;ENHANCEMENT: Improved dashboard icon and update thumbnail icon.&lt;/li&gt;
+&lt;li&gt;BUG FIX: Fixed an issue where the Outbound Event logic would load in the admin dashboard for Ninja Forms.&lt;/li&gt;
+&lt;li&gt;BUG FIX: Fixed an issue where the nonce would be passed through for Ultimate Member Outbound Events.&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">tag:github.com,2008:Repository/109668745/v2.4</guid><pubDate>Wed, 08 Mar 2023 19:50:00 +0000</pubDate></item><item><title>V1.1 - 2022-12-07</title><link>https://github.com/Yoohoo-Plugins/when-last-login-export-user-records/releases/tag/v1.1</link><description>&lt;ul&gt;
+&lt;li&gt;SECURITY: Added nonces for exporting data and sanitized data.&lt;/li&gt;
+&lt;li&gt;ENHANCEMENT: Make plugin strings localizable.&lt;/li&gt;
+&lt;li&gt;REFACTOR: Applied WPCS to make code more legible.&lt;/li&gt;
+&lt;li&gt;BUG FIX: Fixed a fatal error with PHP 8+ where date functions were expecting an integer.&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">tag:github.com,2008:Repository/92819863/v1.1</guid><pubDate>Wed, 07 Dec 2022 15:26:12 +0000</pubDate></item><item><title>1.2.1 Release</title><link>https://github.com/Yoohoo-Plugins/when-last-login/releases/tag/1.2.1</link><description>&lt;p&gt;ENHANCEMENT: Excluded admins from frequent logged in users dashboard statistics.&lt;br /&gt;
+BUG FIX: Fixed sorting of dashboard statistics.&lt;/p&gt;</description><guid isPermaLink="false">tag:github.com,2008:Repository/63408680/1.2.1</guid><pubDate>Tue, 21 Sep 2021 18:52:52 +0000</pubDate></item><item><title>Version 1.0.4</title><link>https://github.com/Yoohoo-Plugins/debug-my-site/releases/tag/V1.0.4</link><description>&lt;p&gt;Enhancements: Added in hooks for Debug My Site&lt;br /&gt;
+Enhancements: Adjust UI slightly, moved download button right to the top. Makes more sense here.&lt;br /&gt;
+Enhancements: Added in a nonce for downloading the debug information.&lt;/p&gt;</description><guid isPermaLink="false">tag:github.com,2008:Repository/86429656/V1.0.4</guid><pubDate>Wed, 03 Apr 2019 11:10:39 +0000</pubDate></item><item><title>1.1 Release</title><link>https://github.com/Yoohoo-Plugins/when-last-login-slack-notifications/releases/tag/1.1</link><description>&lt;p&gt;Enhancement: Notify slack when a user registers&lt;/p&gt;
+
+&lt;p&gt;Added in a feature to allow user's to be notified when a user registers on a site.&lt;/p&gt;</description><guid isPermaLink="false">tag:github.com,2008:Repository/109669023/1.1</guid><pubDate>Mon, 21 May 2018 14:07:50 +0000</pubDate></item></channel></rss>
